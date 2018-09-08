@@ -16,7 +16,7 @@ type DentsParams = {
 	dentsTotal: number,
 	dentsStrokeWidth: number,
 	dentsStrokeMargin: number
-}
+};
 
 type Props = {
 	color: string,

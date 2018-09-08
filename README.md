@@ -23,6 +23,19 @@ $ yarn run dev
 
 * open `http://localhost:9041`
 
+### params
+
+```
+const props = {
+  "color": "#000",
+  "arcRadius": "0.238",
+  "arcStrokeWidth": "0.032",
+  "dentsTotal": "11",
+  "dentsStrokeWidth": "0.751",
+  "dentsStrokeMargin": "0.051"
+};
+
+```
 
 ### demo
 

@@ -31,6 +31,8 @@ body,
 .cog-example{
 	@height:50vh;
 
+	display:flex;
+
 	display: inline-block;
 	width: 50%;
 	padding:1em;
@@ -46,19 +48,35 @@ body,
 	}
 }
 
-.component-controls{
-	margin-top:2em;
-	text-align: center;
 
-	label {
-		display: block;
+.controls {
+	.component-controls{
+		text-align: center;
 
-		span{
+		label {
 			display: block;
-		}
 
-		input {
-			width:60%;
+			span{
+				display: block;
+			}
+
+			input {
+				width:60%;
+			}
+		}
+	}
+
+	.values{
+		position:fixed;
+		top:1%;
+		right:1%;
+
+		textarea{
+			padding:.5em;
+			min-width: 200px;
+			min-height: 10em;
+			font-size: 9px;
+			border:1px solid #EEE;
 		}
 	}
 }
