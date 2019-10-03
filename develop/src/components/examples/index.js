@@ -8,9 +8,15 @@ import SVGCog from '../../../../lib';
 
 import CogControls from './controls';
 import CogValues from './values';
+import Presets from './presets';
+
+
+export type Values = {
+	[key: string]: string | number
+};
 
 type Props = {};
-type State = Object;
+type State = Values;
 
 
 const defaults = {
@@ -23,15 +29,23 @@ const defaults = {
 };
 
 
+
+const getStyle = () => ({
+	transform: 'rotate(-0.25turn)'
+});
+
+
 export default class CogExample extends Component <Props, State> {
 
-	onChange: Function;
+	onChange: (input: Object | string) => void;
+	onPresetClick: (Values) => void;
 
 	constructor (props: Props) {
 		super (props)
 		this.state = {...defaults};
 
 		this.onChange = this.onChange.bind (this);
+		this.onPresetClick = this.onPresetClick.bind (this);
 	}
 
 	onChange (input: Object | string) {
@@ -50,19 +64,26 @@ export default class CogExample extends Component <Props, State> {
 		this.setState (values);
 	}
 
+	onPresetClick (data: Values) {
+		this.setState (data);
+	}
+
 	render () {
 		return (
 			<div className="cog-example">
 
-				<SVGCog {...this.state}/>
+				<SVGCog {...this.state} style={getStyle ()}/>
 
 				<div className="controls">
 					<CogControls
+						values={{...this.state}}
 						onChange={this.onChange}/>
 
 					<CogValues
 						values={this.state}
 						onChange={this.onChange}/>
+
+					<Presets onClick={this.onPresetClick}/>
 				</div>
 			</div>
 		);

@@ -2,11 +2,10 @@
 
 import React, {Component} from 'react';
 
-type Values = {
-	[key: string]: string | number
-};
+import type {Values} from './';
 
 type Props = {
+	values: Values,
 	onChange: (values: Values) => mixed
 };
 
@@ -17,7 +16,7 @@ type State = {
 
 export default class ComponentControls extends Component <Props, State> {
 
-	onInputChange: Function;
+	onInputChange: (SyntheticInputEvent <EventTarget>) => void;
 
 	constructor (props: Props) {
 		super (props);
@@ -32,13 +31,17 @@ export default class ComponentControls extends Component <Props, State> {
 	onInputChange (e: SyntheticInputEvent <EventTarget>) {
 		const {values = {}} = this.state;
 		const {name, value} = e.target;
-		const data = {...values, [name]: value}
+		const data: Values = {...values, [name]: value}
 
 		this.setState ({values: data});
 
 		if (typeof this.props.onChange === 'function') {
 			this.props.onChange (data);
 		}
+	}
+
+	static getDerivedStateFromProps (props: Props) {
+		return props;
 	}
 
 	render () {

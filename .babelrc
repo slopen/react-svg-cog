@@ -1,21 +1,33 @@
 {
-	"plugins": [
-		["module-resolver", {
-      		"root": ["./src", "./develop/src"]
-    	}],
-		["transform-runtime", {
-			"polyfill": false,
-			"regenerator": true
+  	"presets": [
+		["@babel/preset-env", {
+			"loose": true,
+			"shippedProposals": true,
+			"useBuiltIns": "entry",
+			"corejs": "2",
+			"targets": {
+				"node": "8.12",
+				"browsers": [">0.25%", "not dead", "ie >= 11"]
+			}
+		}],
+		["@babel/preset-react", {
+			"useBuiltIns": true,
+			"pragma": "React.createElement"
 		}]
-	],
-	"presets": [
-	    ["env", {
-	      "targets": {
-	      	"node": "8.1",
-	        "browsers": ["last 2 versions"]
-	      }
-	    }],
-		"stage-2",
-		"react"
-	]
+  	],
+
+  	"plugins": [
+		['babel-plugin-module-resolver', {
+    		root: ['./src'],
+    		alias: {}
+  		}],
+  		"@babel/plugin-transform-flow-strip-types",
+		["@babel/plugin-proposal-class-properties", {
+			loose: true
+		}],
+		["@babel/plugin-transform-runtime", {
+			helpers: true,
+			regenerator: true,
+		}]
+  	]
 }

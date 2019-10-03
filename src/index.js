@@ -20,6 +20,7 @@ type DentsParams = {
 
 type Props = {
 	color: string,
+	style: string,
 } & ArcParams & DentsParams;
 
 const createItems = ({
@@ -30,26 +31,26 @@ const createItems = ({
 }: Props): Array <DentProps> => {
 	const step = 1 / dentsTotal;
 
-	return [...new Array (Number (dentsTotal))].reduce ((res) => {
-		const start = res.length ? res [res.length - 1].end : 0;
-		const end = start + step;
+	return new Array (Number (dentsTotal))
+		.fill ()
+		.reduce ((res) => {
+			const start = res.length ? res [res.length - 1].end : 0;
+			const end = start + step;
 
-		res.push ({
-			start,
-			end,
-			color,
-			strokeWidth: dentsStrokeWidth,
-			strokeMargin: dentsStrokeMargin
-		});
+			res.push ({
+				start,
+				end,
+				color,
+				strokeWidth: dentsStrokeWidth,
+				strokeMargin: dentsStrokeMargin
+			});
 
-		return res;
-	}, []);
+			return res;
+		}, []);
 }
 
 
-const getStyle = () => ({
-	transform: 'rotate(-0.25turn)'
-});
+
 
 const Circle = ({
 	color,
@@ -69,7 +70,7 @@ export default (props: Props) =>
 	<div className="react-svg-cog">
 		<svg
 			viewBox="-1 -1 2 2"
-			style={getStyle ()}>
+			style={props.style}>
 
 			<Circle {...props}/>
 

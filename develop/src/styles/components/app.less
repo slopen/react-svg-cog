@@ -37,15 +37,16 @@ body,
 	width: 50%;
 	padding:1em;
 
-	.react-svg-cog{
+	> .react-svg-cog{
 		overflow:hidden;
 		text-align: center;
+
+		> svg{
+			max-width: @height;
+			animation: rotating @animation-speed linear infinite;
+		}
 	}
 
-	svg{
-		max-width: @height;
-		animation: rotating @animation-speed linear infinite;
-	}
 }
 
 
@@ -72,11 +73,40 @@ body,
 		right:1%;
 
 		textarea{
-			padding:.5em;
+			padding:1em .5em;
 			min-width: 200px;
-			min-height: 10em;
+			min-height: 11em;
 			font-size: 9px;
 			border:1px solid #EEE;
+		}
+	}
+}
+
+.presets{
+	position:fixed;
+	top:20%;
+	right:1%;
+	width:200px;
+	text-align: center;
+
+	max-height: 80vh;
+	overflow: auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	div{
+		width: 22%;
+		margin-bottom: .5em;
+
+		.react-svg-cog{
+			opacity: .85;
+			cursor:pointer;
+			width:100%;
+
+			&:hover{
+				opacity: 1;
+			}
 		}
 	}
 }
